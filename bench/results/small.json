@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "label": "small",
+    "date": "2026-10-12T19:04:10",
+    "url": "http://localhost:8080",
+    "user": "demo",
+    "repeats": 40,
+    "warmup": 5,
+    "page_size": 20,
+    "app_today": "2026-10-11",
+    "machine": "Windows-10-10.0.26200-SP0, AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD, логических ядер: 16",
+    "python": "3.11.9",
+    "rows_before": {
+      "reader": 50,
+      "book": 100,
+      "book_copy": 200,
+      "loan": 300
+    },
+    "rows_after": {
+      "reader": 50,
+      "book": 100,
+      "book_copy": 200,
+      "loan": 345
+    },
+    "loans_added_by_measurement": 45,
+    "write_targets": {
+      "reader_id": 1,
+      "copy_id": 1
+    }
+  },
+  "operations": [
+    {
+      "name": "login",
+      "description": "POST /api/login",
+      "n": 40,
+      "min": 1.5912000089883804,
+      "p50": 1.9993999740108848,
+      "p95": 2.7359999949112535,
+      "max": 2.9849999700672925,
+      "mean": 2.049347491993103,
+      "db_queries": 0.0,
+      "db_p50": 0.0,
+      "connect_p50": 0.0,
+      "app_p50": 1.9993999740108848
+    },
+    {
+      "name": "list_first_page",
+      "description": "GET /api/loans?page=1&size=20",
+      "n": 40,
+      "min": 26.334900001529604,
+      "p50": 39.34650000883266,
+      "p95": 49.72860001726076,
+      "max": 51.90550000406802,
+      "mean": 39.351794999674894,
+      "db_queries": 2.0,
+      "db_p50": 6.7425,
+      "connect_p50": 28.12,
+      "app_p50": 32.242100016620014
+    },
+    {
+      "name": "list_middle_page",
+      "description": "GET /api/loans?page=7&size=20",
+      "n": 40,
+      "min": 28.561999963130802,
+      "p50": 39.188549999380484,
+      "p95": 48.35080000339076,
+      "max": 61.02130003273487,
+      "mean": 38.91586499958066,
+      "db_queries": 2.0,
+      "db_p50": 6.798,
+      "connect_p50": 27.814,
+      "app_p50": 32.03719998729415
+    },
+    {
+      "name": "list_overdue",
+      "description": "GET /api/loans?status=overdue&page=1&size=20",
+      "n": 40,
+      "min": 23.549699981231242,
+      "p50": 39.837449992774054,
+      "p95": 47.238600032869726,
+      "max": 53.91600000439212,
+      "mean": 36.91157499561086,
+      "db_queries": 2.0,
+      "db_p50": 6.322,
+      "connect_p50": 29.693,
+      "app_p50": 33.42899998436309
+    },
+    {
+      "name": "list_by_reader",
+      "description": "GET /api/loans?reader_id=25&size=20",
+      "n": 40,
+      "min": 23.449799977242947,
+      "p50": 33.513000002130866,
+      "p95": 46.364800014998764,
+      "max": 48.726500011980534,
+      "mean": 35.10681749903597,
+      "db_queries": 2.0,
+      "db_p50": 5.959,
+      "connect_p50": 23.447499999999998,
+      "app_p50": 27.289950004693118
+    },
+    {
+      "name": "loan_card",
+      "description": "GET /api/loans/{id}",
+      "n": 40,
+      "min": 22.79009995982051,
+      "p50": 33.50985003635287,
+      "p95": 42.10520000196993,
+      "max": 44.41440000664443,
+      "mean": 34.427042499009985,
+      "db_queries": 1.0,
+      "db_p50": 4.4055,
+      "connect_p50": 25.109,
+      "app_p50": 29.07419997641444
+    },
+    {
+      "name": "summary",
+      "description": "GET /api/summary",
+      "n": 40,
+      "min": 24.54880002187565,
+      "p50": 33.757699973648414,
+      "p95": 45.623900019563735,
+      "max": 48.88390004634857,
+      "mean": 35.16414250043454,
+      "db_queries": 2.0,
+      "db_p50": 6.073,
+      "connect_p50": 23.8065,
+      "app_p50": 27.379349978145214
+    },
+    {
+      "name": "issue",
+      "description": "POST /api/loans",
+      "n": 40,
+      "min": 32.2304000146687,
+      "p50": 54.4394500029739,
+      "p95": 74.30700003169477,
+      "max": 77.96860003145412,
+      "mean": 54.129672501585446,
+      "db_queries": 6.0,
+      "db_p50": 10.879999999999999,
+      "connect_p50": 26.384999999999998,
+      "app_p50": 43.92929997062869
+    },
+    {
+      "name": "return",
+      "description": "POST /api/loans/{id}/return",
+      "n": 40,
+      "min": 28.38009997503832,
+      "p50": 47.94479999691248,
+      "p95": 69.93479997618124,
+      "max": 73.70050001190975,
+      "mean": 46.933194996381644,
+      "db_queries": 3.0,
+      "db_p50": 7.2785,
+      "connect_p50": 23.119500000000002,
+      "app_p50": 40.675049986628814
+    }
+  ]
+}

@@ -1,10 +1,12 @@
-"""
-Бизнес-правила библиотеки.
+"""Бизнес-правила библиотеки.
+
+Здесь нет ни HTTP, ни SQL: только чистые функции. Поэтому их легко
+проверять тестами без базы данных и без запущенного сервера.
 """
 from datetime import date, timedelta
 
-LOAN_DAYS = 14
-FINE_PER_DAY = 100
+LOAN_DAYS = 14      
+FINE_PER_DAY = 10    
 
 
 class LoanError(Exception):

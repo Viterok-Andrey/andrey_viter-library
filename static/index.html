@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Библиотека: выдача книг</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; }
+  header { background: #2d4a6b; color: #fff; padding: 10px 20px; display: flex; gap: 16px; align-items: center; }
+  header h1 { font-size: 18px; margin: 0; flex: 1; }
+  header button { background: #fff; color: #2d4a6b; border: 0; padding: 6px 12px; cursor: pointer; }
+  header button.active { background: #f0b429; }
+  main { max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+  section { background: #fff; padding: 16px; margin-bottom: 16px; border: 1px solid #ddd; }
+  h2 { margin-top: 0; font-size: 17px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+  th { background: #eef2f6; }
+  tr.clickable { cursor: pointer; }
+  tr.clickable:hover { background: #f5f9ff; }
+  label { margin-right: 12px; }
+  input, select, button { font-size: 14px; padding: 4px 6px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .error { color: #b00020; margin: 8px 0; }
+  .ok { color: #1b6e2d; margin: 8px 0; }
+  .status-overdue { color: #b00020; font-weight: bold; }
+  .status-returned { color: #1b6e2d; }
+  .hidden { display: none; }
+  dl { display: grid; grid-template-columns: 180px 1fr; gap: 4px 12px; margin: 0; }
+  dt { color: #666; }
+  dd { margin: 0; }
+</style>
+</head>
+<body>
+
+<header id="topbar" class="hidden">
+  <h1>Библиотека: выдача книг</h1>
+  <button data-screen="loans" class="active">Выдачи</button>
+  <button data-screen="summary">Сводка</button>
+  <button data-screen="actions">Выдать / принять</button>
+  <button id="logout">Выйти</button>
+</header>
+
+<main>
+  <!-- Вход -->
+  <section id="login-screen">
+    <h2>Вход</h2>
+    <div class="row">
+      <label>Логин <input id="login-user" value="demo"></label>
+      <label>Пароль <input id="login-pass" type="password" value="demo"></label>
+      <button id="login-btn">Войти</button>
+    </div>
+    <div id="login-error" class="error"></div>
+  </section>
+
+  <!-- Экран 1: список выдач -->
+  <div id="screen-loans" class="hidden">
+    <section>
+      <h2>Список выдач</h2>
+      <div class="row">
+        <label>Статус
+          <select id="f-status">
+            <option value="all">все</option>
+            <option value="on_hands">на руках</option>
+            <option value="overdue">просрочены</option>
+            <option value="returned">возвращены</option>
+          </select>
+        </label>
+        <label>Читатель (id) <input id="f-reader" size="6"></label>
+        <label>На странице
+          <select id="f-size"><option>10</option><option selected>20</option><option>50</option></select>
+        </label>
+        <button id="f-apply">Показать</button>
+      </div>
+      <div id="loans-error" class="error"></div>
+      <table>
+        <thead><tr><th>№</th><th>Читатель</th><th>Книга</th><th>Экземпляр</th><th>Выдана</th><th>Срок</th><th>Возвращена</th><th>Штраф</th><th>Статус</th></tr></thead>
+        <tbody id="loans-body"></tbody>
+      </table>
+      <div class="row" style="margin-top:12px">
+        <button id="prev">← Назад</button>
+        <span id="pager"></span>
+        <button id="next">Вперёд →</button>
+      </div>
+    </section>
+
+    <!-- Экран 2: карточка выдачи -->
+    <section id="card" class="hidden">
+      <h2>Карточка выдачи</h2>
+      <div id="card-body"></div>
+    </section>
+  </div>
+
+  <!-- Экран 3: сводка -->
+  <div id="screen-summary" class="hidden">
+    <section>
+      <h2>Сводка</h2>
+      <div id="summary-error" class="error"></div>
+      <dl id="summary-totals"></dl>
+      <h2 style="margin-top:20px">Какие книги берут чаще всего</h2>
+      <table>
+        <thead><tr><th>Книга</th><th>Автор</th><th>Выдач</th></tr></thead>
+        <tbody id="summary-top"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- Операции: выдать и принять -->
+  <div id="screen-actions" class="hidden">
+    <section>
+      <h2>Выдать экземпляр читателю</h2>
+      <div class="row">
+        <label>Читатель (id) <input id="issue-reader" size="8"></label>
+        <label>Экземпляр (id) <input id="issue-copy" size="8"></label>
+        <button id="issue-btn">Выдать</button>
+      </div>
+      <div id="issue-msg"></div>
+    </section>
+    <section>
+      <h2>Принять возврат</h2>
+      <div class="row">
+        <label>Номер выдачи <input id="return-id" size="8"></label>
+        <button id="return-btn">Принять</button>
+      </div>
+      <div id="return-msg"></div>
+    </section>
+  </div>
+</main>
+
+<script>
+let token = null;
+let page = 1;
+let totalPages = 1;
+
+const STATUS_NAMES = { on_hands: "на руках", overdue: "просрочена", returned: "возвращена" };
+
+function $(id) { return document.getElementById(id); }
+
+function esc(value) {
+  if (value === null || value === undefined) return "";
+  const div = document.createElement("div");
+  div.textContent = String(value);
+  return div.innerHTML;
+}
+
+// Единая обёртка над fetch: подставляет токен, разбирает ошибки.
+async function api(method, path, body) {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers["Authorization"] = "Bearer " + token;
+  const response = await fetch(path, {
+    method: method,
+    headers: headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  let data = null;
+  try { data = await response.json(); } catch (e) { /* пустой ответ */ }
+  if (response.status === 401 && path !== "/api/login") {
+    logout();
+    throw new Error("Сессия истекла, войдите заново");
+  }
+  if (!response.ok) {
+    let message = "Ошибка " + response.status;
+    if (data && typeof data.detail === "string") message = data.detail;
+    else if (data && Array.isArray(data.detail)) message = "Неверные параметры запроса";
+    throw new Error(message);
+  }
+  return data;
+}
+
+// --- Вход и выход ---
+
+async function login() {
+  $("login-error").textContent = "";
+  try {
+    const data = await api("POST", "/api/login", {
+      username: $("login-user").value,
+      password: $("login-pass").value,
+    });
+    token = data.token;
+    try { sessionStorage.setItem("token", token); } catch (e) {}
+    showApp();
+  } catch (e) {
+    $("login-error").textContent = e.message;
+  }
+}
+
+function logout() {
+  token = null;
+  try { sessionStorage.removeItem("token"); } catch (e) {}
+  $("topbar").classList.add("hidden");
+  for (const id of ["screen-loans", "screen-summary", "screen-actions"]) $(id).classList.add("hidden");
+  $("login-screen").classList.remove("hidden");
+}
+
+function showApp() {
+  $("login-screen").classList.add("hidden");
+  $("topbar").classList.remove("hidden");
+  showScreen("loans");
+}
+
+function showScreen(name) {
+  for (const id of ["loans", "summary", "actions"]) {
+    $("screen-" + id).classList.toggle("hidden", id !== name);
+  }
+  for (const btn of document.querySelectorAll("header button[data-screen]")) {
+    btn.classList.toggle("active", btn.dataset.screen === name);
+  }
+  if (name === "loans") loadLoans();
+  if (name === "summary") loadSummary();
+}
+
+// --- Экран 1: список ---
+
+async function loadLoans() {
+  $("loans-error").textContent = "";
+  const size = $("f-size").value;
+  const params = new URLSearchParams({ page: page, size: size, status: $("f-status").value });
+  const readerId = $("f-reader").value.trim();
+  if (readerId) params.set("reader_id", readerId);
+  try {
+    const data = await api("GET", "/api/loans?" + params.toString());
+    totalPages = Math.max(1, Math.ceil(data.total / data.size));
+    $("loans-body").innerHTML = data.items.map(item => `
+      <tr class="clickable" data-id="${item.id}">
+        <td>${item.id}</td><td>${esc(item.reader_name)}</td><td>${esc(item.book_title)}</td>
+        <td>${esc(item.inventory_number)}</td><td>${esc(item.issued_at)}</td><td>${esc(item.due_date)}</td>
+        <td>${esc(item.returned_at)}</td><td>${item.fine}</td>
+        <td class="status-${item.status}">${STATUS_NAMES[item.status]}</td>
+      </tr>`).join("");
+    $("pager").textContent = `страница ${data.page} из ${totalPages}, всего выдач: ${data.total}`;
+    $("prev").disabled = page <= 1;
+    $("next").disabled = page >= totalPages;
+  } catch (e) {
+    $("loans-error").textContent = e.message;
+  }
+}
+
+// --- Экран 2: карточка ---
+
+async function openCard(id) {
+  try {
+    const loan = await api("GET", "/api/loans/" + id);
+    $("card-body").innerHTML = `<dl>
+      <dt>Номер выдачи</dt><dd>${loan.id}</dd>
+      <dt>Статус</dt><dd class="status-${loan.status}">${STATUS_NAMES[loan.status]}</dd>
+      <dt>Выдана</dt><dd>${esc(loan.issued_at)}</dd>
+      <dt>Срок возврата</dt><dd>${esc(loan.due_date)}</dd>
+      <dt>Возвращена</dt><dd>${esc(loan.returned_at) || "ещё на руках"}</dd>
+      <dt>Штраф, ₽</dt><dd>${loan.fine}</dd>
+      <dt>Читатель</dt><dd>${esc(loan.reader.full_name)} (id ${loan.reader.id}, билет ${esc(loan.reader.card_number)})</dd>
+      <dt>Книга</dt><dd>${esc(loan.book.title)}, ${esc(loan.book.author)} (id ${loan.book.id})</dd>
+      <dt>Экземпляр</dt><dd>${esc(loan.copy.inventory_number)} (id ${loan.copy.id})</dd>
+    </dl>`;
+    $("card").classList.remove("hidden");
+    $("card").scrollIntoView();
+  } catch (e) {
+    $("loans-error").textContent = e.message;
+  }
+}
+
+// --- Экран 3: сводка ---
+
+async function loadSummary() {
+  $("summary-error").textContent = "";
+  try {
+    const data = await api("GET", "/api/summary");
+    $("summary-totals").innerHTML = `
+      <dt>Экземпляров на руках</dt><dd>${data.on_hands}</dd>
+      <dt>Из них просрочено</dt><dd>${data.overdue}</dd>`;
+    $("summary-top").innerHTML = data.top_books.map(b =>
+      `<tr><td>${esc(b.title)}</td><td>${esc(b.author)}</td><td>${b.loans_count}</td></tr>`).join("");
+  } catch (e) {
+    $("summary-error").textContent = e.message;
+  }
+}
+
+// --- Выдать и принять ---
+
+function showMessage(id, text, isError) {
+  const el = $(id);
+  el.textContent = text;
+  el.className = isError ? "error" : "ok";
+}
+
+async function issueLoan() {
+  try {
+    const loan = await api("POST", "/api/loans", {
+      reader_id: Number($("issue-reader").value),
+      copy_id: Number($("issue-copy").value),
+    });
+    showMessage("issue-msg", `Выдача оформлена, номер ${loan.id}, вернуть до ${loan.due_date}`, false);
+  } catch (e) {
+    showMessage("issue-msg", e.message, true);
+  }
+}
+
+async function returnLoan() {
+  try {
+    const loan = await api("POST", `/api/loans/${Number($("return-id").value)}/return`);
+    showMessage("return-msg", `Возврат принят, штраф: ${loan.fine} ₽`, false);
+  } catch (e) {
+    showMessage("return-msg", e.message, true);
+  }
+}
+
+// --- Подключение обработчиков ---
+
+$("login-btn").onclick = login;
+$("logout").onclick = logout;
+$("f-apply").onclick = () => { page = 1; loadLoans(); };
+$("prev").onclick = () => { if (page > 1) { page--; loadLoans(); } };
+$("next").onclick = () => { if (page < totalPages) { page++; loadLoans(); } };
+$("loans-body").onclick = (event) => {
+  const row = event.target.closest("tr[data-id]");
+  if (row) openCard(row.dataset.id);
+};
+$("issue-btn").onclick = issueLoan;
+$("return-btn").onclick = returnLoan;
+for (const btn of document.querySelectorAll("header button[data-screen]")) {
+  btn.onclick = () => showScreen(btn.dataset.screen);
+}
+
+try { token = sessionStorage.getItem("token"); } catch (e) { token = null; }
+if (token) showApp();
+</script>
+</body>
+</html>

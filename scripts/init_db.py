@@ -1,19 +1,13 @@
 """Создаёт схему с префиксом и таблицы. Запуск: python -m scripts.init_db
 
+ВНИМАНИЕ: схема пересоздаётся с нуля, все данные в ней удаляются.
 """
-from pathlib import Path
-
 from app import config
-from app.db import connect
-
-SCHEMA_FILE = Path(__file__).resolve().parent.parent / "db" / "schema.sql"
+from app.db import apply_schema
 
 
 def main() -> None:
-    sql = SCHEMA_FILE.read_text(encoding="utf-8")
-    sql = sql.replace("{{schema}}", config.SCHEMA)
-    with connect(use_schema=False) as conn:
-        conn.execute(sql)
+    apply_schema(config.SCHEMA)
     print(f"Схема {config.SCHEMA} создана")
 
 
