@@ -61,7 +61,7 @@ def _loan_card(row) -> dict:
         "book": {"id": row["book_id"], "title": row["title"], "author": row["author"]},
     }
 
-
+#Для гипотезы 1
 def list_loans(conn, page: int, size: int, status: str, reader_id=None) -> dict:
     condition, needs_today = STATUS_FILTERS[status]
     where = [condition]
@@ -80,7 +80,6 @@ def list_loans(conn, page: int, size: int, status: str, reader_id=None) -> dict:
     items = []
     for row in rows:
         loan = _loan_card(row)
-        # в списке достаточно плоских полей, вложенные объекты нужны только карточке
         items.append({
             "id": loan["id"],
             "status": loan["status"],
@@ -100,7 +99,7 @@ def get_loan(conn, loan_id: int):
     row = fetch_one(conn, f"{LOAN_SELECT} WHERE l.id = %s", (loan_id,))
     return _loan_card(row) if row else None
 
-
+#Для гипотезы 3
 def issue_loan(conn, reader_id: int, copy_id: int):
     """Выдаёт экземпляр читателю.
 
@@ -151,7 +150,7 @@ def return_loan(conn, loan_id: int):
     execute(conn, "UPDATE loan SET returned_at = %s, fine = %s WHERE id = %s", (today, fine, loan_id))
     return get_loan(conn, loan_id)
 
-
+#Для гипотезы 2
 def get_summary(conn) -> dict:
     """Сводка по всем данным: сколько экземпляров на руках, сколько просрочено, топ книг."""
     counts = fetch_one(

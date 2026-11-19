@@ -79,4 +79,4 @@ python -m uvicorn app.main:app --port 8080
 `steps.md` (таблица ступеней), `steps.json`, графики `*.png`.
 `load/results/profile/`: `flamegraph.svg`, `profile.raw`, `hot.md`.
 CPU в таблицах - в процентах **одного** ядра (200 % = два ядра заняты полностью).
-
+w
