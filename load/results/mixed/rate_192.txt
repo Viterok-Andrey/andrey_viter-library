@@ -1,0 +1,88 @@
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{kind:load}
+    ✗ 'p(95)<500' p(95)=9.19s
+
+    http_req_duration{operation:issue}
+    ✓ 'max>=0' max=9.53s
+
+    http_req_duration{operation:list_by_reader}
+    ✓ 'max>=0' max=9.45s
+
+    http_req_duration{operation:list_first_page}
+    ✓ 'max>=0' max=10.14s
+
+    http_req_duration{operation:list_middle_page}
+    ✓ 'max>=0' max=10.29s
+
+    http_req_duration{operation:list_overdue}
+    ✓ 'max>=0' max=9.5s
+
+    http_req_duration{operation:loan_card}
+    ✓ 'max>=0' max=9.43s
+
+    http_req_duration{operation:return}
+    ✓ 'max>=0' max=9.4s
+
+    http_req_duration{operation:summary}
+    ✓ 'max>=0' max=9.82s
+
+    http_req_failed{kind:load}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 19266   275.319953/s
+    checks_succeeded...: 100.00% 19266 out of 19266
+    checks_failed......: 0.00%   0 out of 19266
+
+    ✓ вход: status 200
+    ✓ вход: есть токен
+    ✓ loan_card: status 200
+    ✓ loan_card: карточка нужной выдачи со связанными записями
+    ✓ list_by_reader: status 200
+    ✓ list_by_reader: есть список и общее число
+    ✓ return: 200 с закрытой выдачей или 409 по правилу
+    ✓ list_overdue: status 200
+    ✓ list_overdue: есть список и общее число
+    ✓ issue: 201 с выдачей или 409 по правилу
+    ✓ list_first_page: status 200
+    ✓ list_first_page: есть список и общее число
+    ✓ summary: status 200
+    ✓ summary: счётчики и топ книг
+    ✓ list_middle_page: status 200
+    ✓ list_middle_page: есть список и общее число
+
+    HTTP
+    http_req_duration..................: avg=5.84s min=5.84ms   med=6.13s max=10.29s p(90)=9.04s p(95)=9.19s p(99)=9.54s
+      { expected_response:true }.......: avg=5.84s min=5.84ms   med=6.13s max=10.29s p(90)=9.04s p(95)=9.19s p(99)=9.54s
+      { kind:load }....................: avg=5.85s min=28.55ms  med=6.14s max=10.29s p(90)=9.04s p(95)=9.19s p(99)=9.54s
+      { operation:issue }..............: avg=5.84s min=104.6ms  med=6.1s  max=9.53s  p(90)=9.05s p(95)=9.17s p(99)=9.28s
+      { operation:list_by_reader }.....: avg=5.75s min=54.74ms  med=6.04s max=9.45s  p(90)=8.97s p(95)=9.09s p(99)=9.2s 
+      { operation:list_first_page }....: avg=6.02s min=305.77ms med=6.27s max=10.14s p(90)=9.27s p(95)=9.44s p(99)=9.68s
+      { operation:list_middle_page }...: avg=6.09s min=494.69ms med=6.37s max=10.29s p(90)=9.35s p(95)=9.5s  p(99)=9.74s
+      { operation:list_overdue }.......: avg=5.78s min=66.28ms  med=6.07s max=9.5s   p(90)=8.99s p(95)=9.1s  p(99)=9.21s
+      { operation:loan_card }..........: avg=5.71s min=28.55ms  med=6.02s max=9.43s  p(90)=8.93s p(95)=9.05s p(99)=9.15s
+      { operation:return }.............: avg=5.74s min=56.56ms  med=6.04s max=9.4s   p(90)=8.95s p(95)=9.05s p(99)=9.15s
+      { operation:summary }............: avg=5.97s min=330.13ms med=6.23s max=9.82s  p(90)=9.2s  p(95)=9.38s p(99)=9.64s
+    http_req_failed....................: 0.00%  0 out of 10714
+      { kind:load }....................: 0.00%  0 out of 10702
+    http_reqs..........................: 10714  153.107961/s
+
+    EXECUTION
+    dropped_iterations.................: 818    11.689594/s
+    iteration_duration.................: avg=5.85s min=29.81ms  med=6.14s max=10.3s  p(90)=9.04s p(95)=9.19s p(99)=9.54s
+    iterations.........................: 10702  152.936476/s
+    vus................................: 27     min=23         max=1527
+    vus_max............................: 1548   min=768        max=1548
+
+    NETWORK
+    data_received......................: 34 MB  490 kB/s
+    data_sent..........................: 2.5 MB 36 kB/s
+
+
+
+time="2026-11-18T12:04:01+03:00" level=error msg="thresholds on metrics 'http_req_duration{kind:load}' have been crossed"

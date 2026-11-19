@@ -1,0 +1,431 @@
+{
+  "scenario": "mixed",
+  "limit_ms": 500,
+  "steps": [
+    {
+      "rate": 8.0,
+      "k6_exit_code": 0,
+      "median": 59.0488,
+      "p95": 117.43451999999996,
+      "max": 276.8749,
+      "error_pct": 0,
+      "requests": 240,
+      "dropped": 0,
+      "actual_rate": 7.817368016550124,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 135.55124999999998,
+          "p95": 242.49098999999995,
+          "max": 276.8749
+        },
+        "return": {
+          "med": 62.5652,
+          "p95": 68.60484,
+          "max": 120.462
+        },
+        "list_first_page": {
+          "med": 92.21275,
+          "p95": 106.09987499999998,
+          "max": 117.3239
+        },
+        "list_overdue": {
+          "med": 53.8975,
+          "p95": 60.22769999999999,
+          "max": 67.6878
+        },
+        "loan_card": {
+          "med": 35.4547,
+          "p95": 42.93203999999999,
+          "max": 44.5488
+        },
+        "issue": {
+          "med": 72.0594,
+          "p95": 83.97234999999999,
+          "max": 85.0254
+        },
+        "list_by_reader": {
+          "med": 46.9766,
+          "p95": 54.35986,
+          "max": 56.3185
+        },
+        "summary": {
+          "med": 76.9862,
+          "p95": 94.19835999999997,
+          "max": 108.235
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 17.8,
+          "max": 29.6
+        },
+        "app_cpu": {
+          "median": 6.2,
+          "max": 21.1
+        },
+        "app_mem_mb": {
+          "median": 119.1,
+          "max": 119.1
+        },
+        "db_cpu": {
+          "median": 28.9,
+          "max": 41.2
+        },
+        "db_mem_mb": {
+          "median": 69.2,
+          "max": 73.8
+        },
+        "conn_total": {
+          "median": 0,
+          "max": 1
+        },
+        "conn_active": {
+          "median": 0,
+          "max": 1
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 32.0,
+      "k6_exit_code": 0,
+      "median": 52.9003,
+      "p95": 118.6687,
+      "max": 205.2486,
+      "error_pct": 0,
+      "requests": 961,
+      "dropped": 0,
+      "actual_rate": 31.229372284677574,
+      "checks_pct": 100,
+      "operations": {
+        "loan_card": {
+          "med": 30.47485,
+          "p95": 39.566584999999996,
+          "max": 41.0888
+        },
+        "list_overdue": {
+          "med": 46.11825,
+          "p95": 55.050365,
+          "max": 59.4832
+        },
+        "issue": {
+          "med": 63.4072,
+          "p95": 74.463375,
+          "max": 77.5645
+        },
+        "summary": {
+          "med": 77.9605,
+          "p95": 112.11107999999977,
+          "max": 169.4789
+        },
+        "list_first_page": {
+          "med": 92.0382,
+          "p95": 113.0698,
+          "max": 167.5412
+        },
+        "list_by_reader": {
+          "med": 38.31405,
+          "p95": 49.395,
+          "max": 54.02
+        },
+        "list_middle_page": {
+          "med": 122.26230000000001,
+          "p95": 137.923715,
+          "max": 205.2486
+        },
+        "return": {
+          "med": 54.2759,
+          "p95": 63.70682,
+          "max": 65.9576
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 25.8,
+          "max": 32.6
+        },
+        "app_cpu": {
+          "median": 16.3,
+          "max": 23.3
+        },
+        "app_mem_mb": {
+          "median": 127.0,
+          "max": 127.1
+        },
+        "db_cpu": {
+          "median": 101.3,
+          "max": 108.9
+        },
+        "db_mem_mb": {
+          "median": 74.7,
+          "max": 81.2
+        },
+        "conn_total": {
+          "median": 1,
+          "max": 2
+        },
+        "conn_active": {
+          "median": 1,
+          "max": 2
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 64.0,
+      "k6_exit_code": 0,
+      "median": 47.991,
+      "p95": 130.8973,
+      "max": 302.4388,
+      "error_pct": 0,
+      "requests": 1921,
+      "dropped": 0,
+      "actual_rate": 62.356030321364706,
+      "checks_pct": 100,
+      "operations": {
+        "list_by_reader": {
+          "med": 37.9677,
+          "p95": 47.3809,
+          "max": 81.7987
+        },
+        "list_overdue": {
+          "med": 43.706,
+          "p95": 54.64376,
+          "max": 105.2126
+        },
+        "return": {
+          "med": 34.30085,
+          "p95": 57.827174999999976,
+          "max": 80.1727
+        },
+        "issue": {
+          "med": 61.8383,
+          "p95": 74.55175,
+          "max": 126.047
+        },
+        "list_first_page": {
+          "med": 103.8497,
+          "p95": 143.2466,
+          "max": 233.9077
+        },
+        "summary": {
+          "med": 90.499,
+          "p95": 143.63565,
+          "max": 210.3598
+        },
+        "list_middle_page": {
+          "med": 134.8482,
+          "p95": 178.921325,
+          "max": 302.4388
+        },
+        "loan_card": {
+          "med": 28.2953,
+          "p95": 38.53267999999999,
+          "max": 51.1791
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 36.6,
+          "max": 61.2
+        },
+        "app_cpu": {
+          "median": 50.0,
+          "max": 57.8
+        },
+        "app_mem_mb": {
+          "median": 94.5,
+          "max": 143.7
+        },
+        "db_cpu": {
+          "median": 237.9,
+          "max": 309.6
+        },
+        "db_mem_mb": {
+          "median": 84.6,
+          "max": 93.9
+        },
+        "conn_total": {
+          "median": 2,
+          "max": 4
+        },
+        "conn_active": {
+          "median": 2,
+          "max": 4
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 128.0,
+      "k6_exit_code": 0,
+      "median": 55.8759,
+      "p95": 265.7935,
+      "max": 1085.1665,
+      "error_pct": 0,
+      "requests": 3841,
+      "dropped": 0,
+      "actual_rate": 124.61443980868202,
+      "checks_pct": 100,
+      "operations": {
+        "list_by_reader": {
+          "med": 39.5701,
+          "p95": 209.1992099999994,
+          "max": 385.1509
+        },
+        "summary": {
+          "med": 132.7255,
+          "p95": 438.72989999999976,
+          "max": 739.252
+        },
+        "list_first_page": {
+          "med": 150.52955,
+          "p95": 505.12378999999976,
+          "max": 949.805
+        },
+        "return": {
+          "med": 43.3825,
+          "p95": 161.74990999999997,
+          "max": 336.5876
+        },
+        "issue": {
+          "med": 61.794,
+          "p95": 239.79607499999955,
+          "max": 512.939
+        },
+        "loan_card": {
+          "med": 26.9128,
+          "p95": 141.89333999999923,
+          "max": 322.9776
+        },
+        "list_overdue": {
+          "med": 45.677,
+          "p95": 240.1863599999991,
+          "max": 412.4339
+        },
+        "list_middle_page": {
+          "med": 191.26600000000002,
+          "p95": 554.2195099999999,
+          "max": 1085.1665
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 73.2,
+          "max": 99.7
+        },
+        "app_cpu": {
+          "median": 108.6,
+          "max": 160.2
+        },
+        "app_mem_mb": {
+          "median": 111.0,
+          "max": 116.4
+        },
+        "db_cpu": {
+          "median": 711.0,
+          "max": 1474.9
+        },
+        "db_mem_mb": {
+          "median": 106.9,
+          "max": 230.3
+        },
+        "conn_total": {
+          "median": 8,
+          "max": 31
+        },
+        "conn_active": {
+          "median": 7,
+          "max": 25
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 160.0,
+      "k6_exit_code": 99,
+      "median": 929.6083,
+      "p95": 1648.2434,
+      "max": 2650.5253,
+      "error_pct": 0,
+      "requests": 4801,
+      "dropped": 0,
+      "actual_rate": 148.53643823599188,
+      "checks_pct": 100,
+      "operations": {
+        "loan_card": {
+          "med": 762.1674,
+          "p95": 1416.8555999999999,
+          "max": 2472.2862
+        },
+        "issue": {
+          "med": 891.8138,
+          "p95": 1512.0767999999996,
+          "max": 2525.1851
+        },
+        "list_middle_page": {
+          "med": 1108.2218,
+          "p95": 1899.4242699999998,
+          "max": 2595.0362
+        },
+        "summary": {
+          "med": 974.523,
+          "p95": 1735.43852,
+          "max": 2620.6464
+        },
+        "return": {
+          "med": 787.23915,
+          "p95": 1446.138505,
+          "max": 2263.8426
+        },
+        "list_by_reader": {
+          "med": 796.6249,
+          "p95": 1462.3912099999998,
+          "max": 2428.908
+        },
+        "list_overdue": {
+          "med": 818.7465,
+          "p95": 1490.31319,
+          "max": 2583.3027
+        },
+        "list_first_page": {
+          "med": 1019.4607,
+          "p95": 1788.6225,
+          "max": 2650.5253
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 99.5,
+          "max": 100.0
+        },
+        "app_cpu": {
+          "median": 180.5,
+          "max": 196.2
+        },
+        "app_mem_mb": {
+          "median": 125.3,
+          "max": 131.4
+        },
+        "db_cpu": {
+          "median": 1393.2,
+          "max": 1476.7
+        },
+        "db_mem_mb": {
+          "median": 188.6,
+          "max": 239.8
+        },
+        "conn_total": {
+          "median": 26,
+          "max": 35
+        },
+        "conn_active": {
+          "median": 20,
+          "max": 30
+        }
+      },
+      "passed": false
+    }
+  ]
+}

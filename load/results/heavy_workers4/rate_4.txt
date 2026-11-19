@@ -1,0 +1,88 @@
+time="2026-11-18T20:56:33+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:34+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:35+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:35+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:36+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:36+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:36+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:37+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:37+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:38+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+time="2026-11-18T20:56:38+03:00" level=warning msg="Request Failed" error="Get \"http://localhost:8080/api/loans?page=1875&size=20\": request timeout"
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{kind:load}
+    ✗ 'p(95)<500' p(95)=30s
+
+    http_req_duration{operation:issue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_by_reader}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_first_page}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_middle_page}
+    ✓ 'max>=0' max=30s
+
+    http_req_duration{operation:list_overdue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:loan_card}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:return}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:summary}
+    ✓ 'max>=0' max=0s
+
+    http_req_failed{kind:load}
+    ✗ 'rate<0.01' rate=9.09%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 244    6.077081/s
+    checks_succeeded...: 90.98% 222 out of 244
+    checks_failed......: 9.01%  22 out of 244
+
+    ✓ вход: status 200
+    ✓ вход: есть токен
+    ✗ list_middle_page: status 200
+      ↳  90% — ✓ 110 / ✗ 11
+    ✗ list_middle_page: есть список и общее число
+      ↳  90% — ✓ 110 / ✗ 11
+
+    HTTP
+    http_req_duration..................: avg=2.59s    min=3.7ms    med=133.85ms max=30s      p(90)=187.49ms p(95)=30s      p(99)=30s     
+      { expected_response:true }.......: avg=129.15ms min=3.7ms    med=131.01ms max=203.03ms p(90)=162.97ms p(95)=182.14ms p(99)=197.12ms
+      { kind:load }....................: avg=2.85s    min=102.55ms med=135.47ms max=30s      p(90)=199.49ms p(95)=30s      p(99)=30s     
+      { operation:issue }..............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_by_reader }.....: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_first_page }....: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_middle_page }...: avg=2.85s    min=102.55ms med=135.47ms max=30s      p(90)=199.49ms p(95)=30s      p(99)=30s     
+      { operation:list_overdue }.......: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:loan_card }..........: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:return }.............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:summary }............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+    http_req_failed....................: 8.27%  11 out of 133
+      { kind:load }....................: 9.09%  11 out of 121
+    http_reqs..........................: 133    3.312507/s
+
+    EXECUTION
+    iteration_duration.................: avg=2.85s    min=103.06ms med=136.57ms max=30.02s   p(90)=199.49ms p(95)=30s      p(99)=30s     
+    iterations.........................: 121    3.013635/s
+    vus................................: 1      min=1         max=12
+    vus_max............................: 20     min=20        max=20
+
+    NETWORK
+    data_received......................: 841 kB 21 kB/s
+    data_sent..........................: 31 kB  774 B/s
+
+
+
+time="2026-11-18T20:56:38+03:00" level=error msg="thresholds on metrics 'http_req_duration{kind:load}, http_req_failed{kind:load}' have been crossed"

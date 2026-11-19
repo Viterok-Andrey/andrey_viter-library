@@ -1,0 +1,74 @@
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{kind:load}
+    ✓ 'p(95)<500' p(95)=153.88ms
+
+    http_req_duration{operation:issue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_by_reader}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_first_page}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_middle_page}
+    ✓ 'max>=0' max=164.22ms
+
+    http_req_duration{operation:list_overdue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:loan_card}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:return}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:summary}
+    ✓ 'max>=0' max=0s
+
+    http_req_failed{kind:load}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 122     3.973463/s
+    checks_succeeded...: 100.00% 122 out of 122
+    checks_failed......: 0.00%   0 out of 122
+
+    ✓ вход: status 200
+    ✓ вход: есть токен
+    ✓ list_middle_page: status 200
+    ✓ list_middle_page: есть список и общее число
+
+    HTTP
+    http_req_duration..................: avg=119.72ms min=6.32ms   med=128.29ms max=164.22ms p(90)=148.28ms p(95)=152.89ms p(99)=161.14ms
+      { expected_response:true }.......: avg=119.72ms min=6.32ms   med=128.29ms max=164.22ms p(90)=148.28ms p(95)=152.89ms p(99)=161.14ms
+      { kind:load }....................: avg=132.49ms min=109.26ms med=129.45ms max=164.22ms p(90)=150.14ms p(95)=153.88ms p(99)=161.66ms
+      { operation:issue }..............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_by_reader }.....: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_first_page }....: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:list_middle_page }...: avg=132.49ms min=109.26ms med=129.45ms max=164.22ms p(90)=150.14ms p(95)=153.88ms p(99)=161.66ms
+      { operation:list_overdue }.......: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:loan_card }..........: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:return }.............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+      { operation:summary }............: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s       p(99)=0s      
+    http_req_failed....................: 0.00%  0 out of 72
+      { kind:load }....................: 0.00%  0 out of 60
+    http_reqs..........................: 72     2.344995/s
+
+    EXECUTION
+    iteration_duration.................: avg=134.22ms min=111.42ms med=131.4ms  max=166.07ms p(90)=151.86ms p(95)=155.84ms p(99)=162.71ms
+    iterations.........................: 60     1.954162/s
+    vus................................: 0      min=0       max=0 
+    vus_max............................: 20     min=20      max=20
+
+    NETWORK
+    data_received......................: 577 kB 19 kB/s
+    data_sent..........................: 17 kB  549 B/s
+
+
+

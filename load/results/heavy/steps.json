@@ -1,0 +1,206 @@
+{
+  "scenario": "heavy",
+  "limit_ms": 500,
+  "steps": [
+    {
+      "rate": 2.0,
+      "k6_exit_code": 0,
+      "median": 129.45295,
+      "p95": 153.88898,
+      "max": 164.2252,
+      "error_pct": 0,
+      "requests": 60,
+      "dropped": 0,
+      "actual_rate": 1.9541622963183967,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 129.45295,
+          "p95": 153.88898,
+          "max": 164.2252
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 14.4,
+          "max": 20.0
+        },
+        "app_cpu": {
+          "median": 1.6,
+          "max": 19.7
+        },
+        "app_mem_mb": {
+          "median": 87.7,
+          "max": 88.9
+        },
+        "db_cpu": {
+          "median": 20.8,
+          "max": 23.9
+        },
+        "db_mem_mb": {
+          "median": 67.9,
+          "max": 68.5
+        },
+        "conn_total": {
+          "median": 0,
+          "max": 0
+        },
+        "conn_active": {
+          "median": 0,
+          "max": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 8.0,
+      "k6_exit_code": 0,
+      "median": 106.2157,
+      "p95": 135.2322,
+      "max": 186.0275,
+      "error_pct": 0,
+      "requests": 241,
+      "dropped": 0,
+      "actual_rate": 7.833729768275511,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 106.2157,
+          "p95": 135.2322,
+          "max": 186.0275
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 17.9,
+          "max": 24.9
+        },
+        "app_cpu": {
+          "median": 3.9,
+          "max": 15.5
+        },
+        "app_mem_mb": {
+          "median": 79.1,
+          "max": 89.2
+        },
+        "db_cpu": {
+          "median": 65.0,
+          "max": 89.0
+        },
+        "db_mem_mb": {
+          "median": 75.2,
+          "max": 79.2
+        },
+        "conn_total": {
+          "median": 1,
+          "max": 1
+        },
+        "conn_active": {
+          "median": 1,
+          "max": 1
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 32.0,
+      "k6_exit_code": 0,
+      "median": 142.975,
+      "p95": 233.8558,
+      "max": 334.3134,
+      "error_pct": 0,
+      "requests": 961,
+      "dropped": 0,
+      "actual_rate": 31.19779968573914,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 142.975,
+          "p95": 233.8558,
+          "max": 334.3134
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 39.4,
+          "max": 63.2
+        },
+        "app_cpu": {
+          "median": 23.3,
+          "max": 46.9
+        },
+        "app_mem_mb": {
+          "median": 87.5,
+          "max": 87.7
+        },
+        "db_cpu": {
+          "median": 371.2,
+          "max": 609.6
+        },
+        "db_mem_mb": {
+          "median": 101.4,
+          "max": 113.8
+        },
+        "conn_total": {
+          "median": 4,
+          "max": 5
+        },
+        "conn_active": {
+          "median": 4,
+          "max": 5
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 64.0,
+      "k6_exit_code": 99,
+      "median": 575.8495,
+      "p95": 1304.1325,
+      "max": 1960.285,
+      "error_pct": 0,
+      "requests": 1921,
+      "dropped": 0,
+      "actual_rate": 62.28059484212344,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 575.8495,
+          "p95": 1304.1325,
+          "max": 1960.285
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 99.9,
+          "max": 100.0
+        },
+        "app_cpu": {
+          "median": 70.5,
+          "max": 80.5
+        },
+        "app_mem_mb": {
+          "median": 99.6,
+          "max": 108.1
+        },
+        "db_cpu": {
+          "median": 1544.0,
+          "max": 1572.5
+        },
+        "db_mem_mb": {
+          "median": 351.7,
+          "max": 413.6
+        },
+        "conn_total": {
+          "median": 35,
+          "max": 40
+        },
+        "conn_active": {
+          "median": 32,
+          "max": 39
+        }
+      },
+      "passed": false
+    }
+  ]
+}

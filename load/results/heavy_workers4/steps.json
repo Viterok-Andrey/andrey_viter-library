@@ -1,0 +1,156 @@
+{
+  "scenario": "heavy",
+  "limit_ms": 500,
+  "steps": [
+    {
+      "rate": 1.0,
+      "k6_exit_code": 0,
+      "median": 145.29919999999998,
+      "p95": 175.859475,
+      "max": 177.8427,
+      "error_pct": 0,
+      "requests": 30,
+      "dropped": 0,
+      "actual_rate": 0.9784211977039781,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 145.29919999999998,
+          "p95": 175.859475,
+          "max": 177.8427
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 15.9,
+          "max": 20.3
+        },
+        "app_cpu": {
+          "median": 4.0,
+          "max": 11.3
+        },
+        "app_mem_mb": {
+          "median": 271.4,
+          "max": 271.4
+        },
+        "db_cpu": {
+          "median": 11.6,
+          "max": 22.5
+        },
+        "db_mem_mb": {
+          "median": 72.6,
+          "max": 72.9
+        },
+        "conn_total": {
+          "median": 0,
+          "max": 0
+        },
+        "conn_active": {
+          "median": 0,
+          "max": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 2.0,
+      "k6_exit_code": 0,
+      "median": 140.68675000000002,
+      "p95": 175.18715499999993,
+      "max": 227.5914,
+      "error_pct": 0,
+      "requests": 60,
+      "dropped": 0,
+      "actual_rate": 1.957061113682327,
+      "checks_pct": 100,
+      "operations": {
+        "list_middle_page": {
+          "med": 140.68675000000002,
+          "p95": 175.18715499999993,
+          "max": 227.5914
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 17.8,
+          "max": 29.0
+        },
+        "app_cpu": {
+          "median": 4.8,
+          "max": 21.4
+        },
+        "app_mem_mb": {
+          "median": 271.3,
+          "max": 271.3
+        },
+        "db_cpu": {
+          "median": 22.2,
+          "max": 26.2
+        },
+        "db_mem_mb": {
+          "median": 73.2,
+          "max": 74.9
+        },
+        "conn_total": {
+          "median": 0,
+          "max": 1
+        },
+        "conn_active": {
+          "median": 0,
+          "max": 1
+        }
+      },
+      "passed": true
+    },
+    {
+      "rate": 4.0,
+      "k6_exit_code": 99,
+      "median": 135.4787,
+      "p95": 30000.7534,
+      "max": 30001.6653,
+      "error_pct": 9.090909090909092,
+      "requests": 121,
+      "dropped": 0,
+      "actual_rate": 3.013634529417481,
+      "checks_pct": 90.98360655737704,
+      "operations": {
+        "list_middle_page": {
+          "med": 135.4787,
+          "p95": 30000.7534,
+          "max": 30001.6653
+        }
+      },
+      "resources": {
+        "system_cpu": {
+          "median": 20.3,
+          "max": 34.5
+        },
+        "app_cpu": {
+          "median": 7.2,
+          "max": 14.4
+        },
+        "app_mem_mb": {
+          "median": 266.9,
+          "max": 271.3
+        },
+        "db_cpu": {
+          "median": 36.7,
+          "max": 50.9
+        },
+        "db_mem_mb": {
+          "median": 73.2,
+          "max": 82.8
+        },
+        "conn_total": {
+          "median": 0,
+          "max": 1
+        },
+        "conn_active": {
+          "median": 0,
+          "max": 1
+        }
+      },
+      "passed": false
+    }
+  ]
+}

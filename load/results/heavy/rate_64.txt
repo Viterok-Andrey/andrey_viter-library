@@ -1,0 +1,75 @@
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{kind:load}
+    ✗ 'p(95)<500' p(95)=1.3s
+
+    http_req_duration{operation:issue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_by_reader}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_first_page}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:list_middle_page}
+    ✓ 'max>=0' max=1.96s
+
+    http_req_duration{operation:list_overdue}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:loan_card}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:return}
+    ✓ 'max>=0' max=0s
+
+    http_req_duration{operation:summary}
+    ✓ 'max>=0' max=0s
+
+    http_req_failed{kind:load}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3844    124.626032/s
+    checks_succeeded...: 100.00% 3844 out of 3844
+    checks_failed......: 0.00%   0 out of 3844
+
+    ✓ вход: status 200
+    ✓ вход: есть токен
+    ✓ list_middle_page: status 200
+    ✓ list_middle_page: есть список и общее число
+
+    HTTP
+    http_req_duration..................: avg=617.5ms  min=4.24ms   med=572.67ms max=1.96s p(90)=1.15s p(95)=1.3s p(99)=1.56s
+      { expected_response:true }.......: avg=617.5ms  min=4.24ms   med=572.67ms max=1.96s p(90)=1.15s p(95)=1.3s p(99)=1.56s
+      { kind:load }....................: avg=621.02ms min=166.51ms med=575.84ms max=1.96s p(90)=1.15s p(95)=1.3s p(99)=1.56s
+      { operation:issue }..............: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:list_by_reader }.....: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:list_first_page }....: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:list_middle_page }...: avg=621.02ms min=166.51ms med=575.84ms max=1.96s p(90)=1.15s p(95)=1.3s p(99)=1.56s
+      { operation:list_overdue }.......: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:loan_card }..........: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:return }.............: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+      { operation:summary }............: avg=0s       min=0s       med=0s       max=0s    p(90)=0s    p(95)=0s   p(99)=0s   
+    http_req_failed....................: 0.00%  0 out of 1933
+      { kind:load }....................: 0.00%  0 out of 1921
+    http_reqs..........................: 1933   62.669646/s
+
+    EXECUTION
+    iteration_duration.................: avg=621.61ms min=166.51ms med=576.2ms  max=1.96s p(90)=1.15s p(95)=1.3s p(99)=1.56s
+    iterations.........................: 1921   62.280595/s
+    vus................................: 16     min=12        max=69 
+    vus_max............................: 256    min=256       max=256
+
+    NETWORK
+    data_received......................: 10 MB  337 kB/s
+    data_sent..........................: 451 kB 15 kB/s
+
+
+
+time="2026-11-18T13:58:06+03:00" level=error msg="thresholds on metrics 'http_req_duration{kind:load}' have been crossed"
